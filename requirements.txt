@@ -1,0 +1,17 @@
+# ── Core ───────────────────────────────
+torch>=2.0
+transformers>=4.35
+numpy
+Pillow
+
+# ── Audio processing ──────────────────
+librosa
+soundfile
+
+# ── Web server ────────────────────────
+fastapi>=0.104
+uvicorn[standard]>=0.24
+python-multipart          # file uploads
+
+# ── Optional: speed up tokenizers ─────
+# tokenizers>=0.15
