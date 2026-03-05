@@ -4,6 +4,7 @@ A **ChatGPT / Gemini-style** web application that analyses customer feedback acr
 
 ![Sentiment Intelligence](https://img.shields.io/badge/AI-Multimodal-blueviolet)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.31%2B-red)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.104%2B-green)
 
 ---
@@ -28,10 +29,10 @@ A **ChatGPT / Gemini-style** web application that analyses customer feedback acr
 ## 📁 Project Structure
 
 ```
+├── streamlit_app.py            # ⭐ Streamlit chatbot UI (primary)
 ├── app/
-│   ├── __init__.py
 │   ├── config.py               # Environment & model configuration
-│   ├── main.py                 # FastAPI app entry point
+│   ├── main.py                 # FastAPI app (alternative backend)
 │   ├── schemas.py              # Pydantic response models
 │   ├── models/
 │   │   ├── text_analyser.py    # RoBERTa text sentiment
@@ -46,7 +47,7 @@ A **ChatGPT / Gemini-style** web application that analyses customer feedback acr
 │   └── templates/
 │       └── index.html          # Single-page application
 ├── sentimentanaysis.py         # Original CLI version
-├── run.py                      # Server launcher
+├── run.py                      # FastAPI server launcher
 ├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml
@@ -56,7 +57,7 @@ A **ChatGPT / Gemini-style** web application that analyses customer feedback acr
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Streamlit)
 
 ### 1. Install dependencies
 
@@ -64,16 +65,21 @@ A **ChatGPT / Gemini-style** web application that analyses customer feedback acr
 pip install -r requirements.txt
 ```
 
-### 2. Run the server
+### 2. Run the Streamlit chatbot
+
+```bash
+streamlit run streamlit_app.py
+```
+
+The app opens automatically at **http://localhost:8501** with a ChatGPT-style dark UI.
+
+---
+
+## 🖥️ Alternative: FastAPI Backend
 
 ```bash
 python run.py
-```
-
-### 3. Open your browser
-
-```
-http://127.0.0.1:8000
+# Open http://127.0.0.1:8000
 ```
 
 ---
@@ -84,7 +90,7 @@ http://127.0.0.1:8000
 docker-compose up --build
 ```
 
-The app will be available at `http://localhost:8000`.
+The Streamlit app will be available at `http://localhost:8501`.
 
 ---
 

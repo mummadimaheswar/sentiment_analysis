@@ -20,6 +20,8 @@ COPY . .
 #    but first request is instant) ────────────────────────────────
 # RUN python -c "from app.models.text_analyser import TextSentimentAnalyser; TextSentimentAnalyser()"
 
-EXPOSE 8000
+EXPOSE 8501
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health || exit 1
+
+CMD ["streamlit", "run", "streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0", "--server.headless=true"]

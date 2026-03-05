@@ -5,7 +5,7 @@ services:
     build: .
     container_name: sentiment-intelligence
     ports:
-      - "8000:8000"
+      - "8501:8501"
     env_file:
       - .env.example
     volumes:
