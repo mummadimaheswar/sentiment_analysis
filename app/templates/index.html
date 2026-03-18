@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentiment Intelligence</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <div class="logo-icon">🧠</div>
+        <div class="logo-text">
+          <h1>Sentiment AI</h1>
+          <span>Multimodal Intelligence</span>
+        </div>
+      </div>
+      <button class="new-chat-btn">
+        <span class="icon">＋</span>
+        New Analysis
+      </button>
+    </div>
+
+    <div class="sidebar-conversations">
+      <div class="conv-section-title">No conversations yet</div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="model-info">
+        <div class="model-dot"></div>
+        <span>RoBERTa · Wav2Vec2 · CLIP</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════ MAIN AREA ═══════════════════ -->
+  <main class="main-area">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+      <span class="top-bar-title">Multimodal Customer Sentiment Intelligence</span>
+      <div class="top-bar-actions">
+        <button class="top-bar-btn" onclick="document.querySelector('.new-chat-btn').click()">＋ New</button>
+      </div>
+    </div>
+
+    <!-- Chat messages -->
+    <div class="chat-container">
+      <div class="messages-wrapper">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- Input area -->
+    <div class="input-area">
+      <div class="input-wrapper">
+        <div class="file-preview-bar"></div>
+        <div class="input-box">
+          <div class="input-actions">
+            <button class="input-action-btn" id="audioBtn" title="Upload audio (.wav, .mp3)">🎙️</button>
+            <button class="input-action-btn" id="imageBtn" title="Upload image (.jpg, .png)">🖼️</button>
+          </div>
+          <textarea id="messageInput" rows="1"
+                    placeholder="Paste a customer review, upload audio, or attach an image…"></textarea>
+          <button class="send-btn" id="sendBtn" title="Analyse">➤</button>
+        </div>
+        <div class="input-hint">
+          Text → RoBERTa&nbsp;&nbsp;·&nbsp;&nbsp;Audio → Wav2Vec2&nbsp;&nbsp;·&nbsp;&nbsp;Image → CLIP&nbsp;&nbsp;|&nbsp;&nbsp;Enter to send, Shift+Enter for new line
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden file inputs -->
+    <input type="file" id="audioUpload" accept=".wav,.mp3,.flac,.ogg,.m4a" />
+    <input type="file" id="imageUpload" accept=".jpg,.jpeg,.png,.gif,.bmp,.webp" />
+
+  </main>
+</div>
+
+<!-- Loading overlay -->
+<div class="loading-overlay">
+  <div class="loading-spinner"></div>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
