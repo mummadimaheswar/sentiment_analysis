@@ -68,15 +68,6 @@ class MultimodalReport:
             f"  Confidence       : {self.confidence:.0f}%",
             sep,
         ]
-        for modality, result in self.modality_results.items():
-            lines.append(f"\n  [{modality.upper()}]")
-            lines.append(f"    Sentiment  : {result.sentiment}")
-            lines.append(f"    Emotion    : {result.emotion}")
-            lines.append(f"    Confidence : {result.confidence:.1f}%")
-            if result.details:
-                for k, v in result.details.items():
-                    lines.append(f"    {k}: {v}")
-        lines.append(sep)
         return "\n".join(lines)
 
 

@@ -349,23 +349,6 @@ def render_analysis_card(a: dict) -> str:
       </div>
     </div>"""
 
-    # Per-modality detail sections
-    detail_html = ""
-    for mod in a.get("modalities_used", []):
-        r = a["modality_results"][mod]
-        rows = f"""
-        <div class="detail-row"><span class="detail-key">Sentiment</span><span class="detail-val">{r['sentiment']}</span></div>
-        <div class="detail-row"><span class="detail-key">Emotion</span><span class="detail-val">{r['emotion']}</span></div>
-        <div class="detail-row"><span class="detail-key">Confidence</span><span class="detail-val">{r['confidence']:.1f}%</span></div>"""
-        for k, v in r.get("details", {}).items():
-            val = str(v) if not isinstance(v, dict) else ", ".join(f"{dk}: {dv}" for dk, dv in v.items())
-            rows += f'<div class="detail-row"><span class="detail-key">{k}</span><span class="detail-val">{val}</span></div>'
-        detail_html += f"""
-        <div class="detail-section">
-          <span class="modality-label">{mod.upper()}</span>
-          {rows}
-        </div>"""
-
     # Suggestions
     sugg_html = ""
     if a.get("suggestions"):
@@ -379,7 +362,6 @@ def render_analysis_card(a: dict) -> str:
         {badge}
       </div>
       {metrics}
-      {detail_html}
       {sugg_html}
     </div>"""
 

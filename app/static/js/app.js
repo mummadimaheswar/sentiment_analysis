@@ -222,25 +222,6 @@ function renderAnalysisCard(a) {
   const badgeClass = `badge-${sentClass}`;
   const modalities = a.modalities_used || [];
 
-  // Modality tabs + detail panels
-  let tabsHtml = "";
-  let panelsHtml = "";
-  modalities.forEach((m, i) => {
-    const r = a.modality_results[m];
-    tabsHtml += `<div class="modality-tab ${i === 0 ? "active" : ""}"
-                      onclick="switchTab(this, '${m}')">${m.charAt(0).toUpperCase() + m.slice(1)}</div>`;
-    const rows = Object.entries(r.details || {}).map(([k, v]) => {
-      const val = typeof v === "object" ? JSON.stringify(v) : v;
-      return `<div class="detail-row"><span class="detail-key">${escapeHtml(k)}</span><span class="detail-value">${escapeHtml(val)}</span></div>`;
-    }).join("");
-    panelsHtml += `<div class="modality-detail ${i === 0 ? "active" : ""}" data-panel="${m}">
-      <div class="detail-row"><span class="detail-key">Sentiment</span><span class="detail-value">${r.sentiment}</span></div>
-      <div class="detail-row"><span class="detail-key">Emotion</span><span class="detail-value">${r.emotion}</span></div>
-      <div class="detail-row"><span class="detail-key">Confidence</span><span class="detail-value">${r.confidence.toFixed(1)}%</span></div>
-      ${rows}
-    </div>`;
-  });
-
   // Suggestions
   const suggestionsHtml = (a.suggestions || []).map(
     (s) => `<div class="suggestion-item">${escapeHtml(s)}</div>`
@@ -267,11 +248,6 @@ function renderAnalysisCard(a) {
           </div>
         </div>
       </div>
-      ${modalities.length ? `
-      <div class="modality-section">
-        <div class="modality-tabs">${tabsHtml}</div>
-        ${panelsHtml}
-      </div>` : ""}
       ${suggestionsHtml ? `
       <div class="suggestions-section">
         <div class="suggestions-title">💡 Recommended Actions</div>
